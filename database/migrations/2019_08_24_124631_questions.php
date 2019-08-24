@@ -13,11 +13,11 @@ class Questions extends Migration
      */
     public function up()
     {
-        Schema::create('Questions', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
         $table->increments('id')->unsigned();
         $table->integer('category_id')->unsigned();
         $table->text('question');
-        $table->foreign('category_id')->references('id')->on('Categories')->onDelete('cascade');;
+        $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');;
       });
     }
 
@@ -28,6 +28,6 @@ class Questions extends Migration
    */
   public function down()
   {
-      Schema::dropIfExists('Questions');
+      Schema::dropIfExists('questions');
   }
 }

@@ -18,11 +18,11 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'organization_name'=>'admin',
+        'email'=>'admin',
         'sector'=>'admin',
         'date_of_assesment'=>'2019/12/12',
         'internal_external'=>'internal',
         'password'=>'$2y$10$U7HyQbAQh2r/OrhQsBau.OJm67/9TkxX76kcpDgrdO2atTsVs1xkq',
-        'user_type'=>'user'
+        'user_type'=>'admin'
     ];
 });

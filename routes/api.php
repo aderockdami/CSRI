@@ -20,8 +20,31 @@ Route::group([
 ], function ($router) {
 
   /* Auth */
-  Route::post('signup', 'authcontroller@signup');
-  //Route::post('login', 'AuthController@login');
-  //Route::post('logout', 'AuthController@logout');
+  Route::post('signup', 'AuthController@signup');
+  Route::post('login', 'AuthController@login');
+  Route::post('logout', 'AuthController@logout');
+
+});
+
+Route::group([
+
+  'prefix' => 'admin'
+
+], function ($router) {
+
+  /* Admin */
+  Route::post('category', 'CategoriesController@createCategory');
+  Route::delete('category/{category}', 'CategoriesController@deleteCategory');
+
+});
+
+Route::group([
+
+  'prefix' => 'user'
+
+], function ($router) {
+
+  /* User */
+  Route::get('category', 'CategoriesController@seeCategory');
 
 });

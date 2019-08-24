@@ -13,9 +13,9 @@ class Users extends Migration
      */
     public function up()
     {
-          Schema::create('Users', function (Blueprint $table) {
+          Schema::create('users', function (Blueprint $table) {
           $table->increments('id')->unsigned();
-          $table->string('organization_name');
+          $table->string('email');
           $table->string('sector');
           $table->date('date_of_assesment');
           $table->string('internal_external');
@@ -31,6 +31,6 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Users');
+        Schema::dropIfExists('users');
     }
 }

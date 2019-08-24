@@ -4,10 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use JWTAuth;
-use App\User;
-use App\Model\Admin;
 
-class isAdmin
+class JWT
 {
     /**
      * Handle an incoming request.
@@ -18,9 +16,7 @@ class isAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Admin::isAdmin(User::getToken())){
-          return $next($request);
-        }
-        return response()->json(['error'=>'unathorised'],401);
+        JWTAuth::parseToken()->authenticate();
+        return $next($request);
     }
 }

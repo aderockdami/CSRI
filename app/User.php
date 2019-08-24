@@ -2,11 +2,13 @@
 
 namespace App;
 
+use JWTAuth;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -18,8 +20,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'organization_name', 'sector', 'password','internal_external','date_of_assesment'
-        
+        'email', 'sector', 'password','internal_external','date_of_assesment','user_type'
+
     ];
 
     /**
@@ -29,15 +31,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     /**
