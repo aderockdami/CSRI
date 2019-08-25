@@ -15,10 +15,10 @@ class Results extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
         $table->increments('id')->unsigned();
-        $table->integer('question_id')->unsigned();
+        $table->integer('category_id')->unsigned();
         $table->integer('user_id')->unsigned();
         $table->string('response');
-        $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');;
+        $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');;
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }

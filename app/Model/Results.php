@@ -14,6 +14,6 @@ class Results extends Model
      * @var array
      */
     protected $fillable = [
-        'question_id','user_id','response'
+        'category_id','user_id','response'
     ];
 }

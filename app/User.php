@@ -72,4 +72,13 @@ class User extends Authenticatable implements JWTSubject
       return JWTAuth::parseToken()->getPayload();
 
     }
+
+    public static function isResultOwner(User $user,User $resultUser){
+      if($user === $resultUser || $user->user_type == "admin"){
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    }
 }
