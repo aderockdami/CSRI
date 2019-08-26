@@ -2,9 +2,8 @@ class User{
 
   ResponseAfterLogin(response){
     const access_token = response.data.access_token;
-    const username = response.data.user;
     if(Token.isValid(access_token)){
-      Storage.store(username,access_token);
+      Storage.store(access_token);
     }
   }
 
@@ -30,12 +29,6 @@ class User{
 
   logout(){
     Storage.clear();
-  }
-
-  getName(){
-    if(this.loggedIn()){
-      return Storage.getUser();
-    }
   }
 
   id(){

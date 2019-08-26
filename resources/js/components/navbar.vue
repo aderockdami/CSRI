@@ -26,9 +26,8 @@ Vue.component("navbar",{
         this.$Progress.start();
         axios.post('/api/auth/logout',{token:Storage.getToken()})
         .then((response)=>{
-          User.ResponseAfterLogin(response);
+          Storage.clear();
           this.$Progress.finish();
-          this.$root.show = false;
           this.$router.push('/');
         }).catch((error)=>{
             this.$Progress.fail();

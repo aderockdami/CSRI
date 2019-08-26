@@ -23,11 +23,6 @@ Vue.component("Login",{
         })
       }
     },
-    created(){
-      if(User.loggedIn()){
-        this.$router.push({ path:`/home`});
-      }
-    },
     methods:{
       login(){
         this.$Progress.start();
@@ -35,8 +30,12 @@ Vue.component("Login",{
         .then((response)=>{
           User.ResponseAfterLogin(response);
           this.$Progress.finish();
-          this.$root.show = false;
-          this.$router.push({ path:`/home`});
+          if(User.isAdmin()){
+            this.$router.push({ path:`/home`});
+          }
+          else{
+            this.$router.push({ path:`/userHome`});
+          }
         }).catch((error)=>{
             this.$Progress.fail();
           })

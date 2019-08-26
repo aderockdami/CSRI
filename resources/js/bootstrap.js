@@ -3,6 +3,10 @@ import axios from "axios";
 import VueRouter from "vue-router";
 import {Form,HasError,AlertError} from 'vform';
 import VueProgressBar from 'vue-progressbar';
+import Echarts from 'vue-echarts';
+import 'echarts/lib/chart/bar';
+
+Vue.component('chart', Echarts);
 
 import Storage from './helpers/Storage'
 import Token from './helpers/Token'
@@ -22,9 +26,9 @@ window.Vue = Vue;
 
 Vue.use(VueRouter);
 
-window.axios = axios;
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 window.Storage = Storage;
 window.Token = Token;
 window.User = User;
+
+window.axios = axios;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

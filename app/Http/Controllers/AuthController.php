@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +28,10 @@ class AuthController extends Controller
       'internal_external'=>'required|string',
       'password'=>'required|string|min:8',
       ]);
-
+      $password = $request->password;
       $request->merge(['password'=>Hash::make($request['password'])]);
       User::create($request->all());
+      $request->merge(['password'=>$password]);
       return $this->login($request);
     }
     /**

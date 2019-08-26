@@ -4,26 +4,16 @@ class Storage {
     localStorage.setItem('token',token);
   }
 
-  setUser(user){
-    localStorage.setItem('user',user);
-  }
-
-  store(user,token,usertype){
+  store(token){
     this.setToken(token);
-    this.setUser(user);
   }
 
   clear(){
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
   }
 
   getToken(){
     return localStorage.getItem('token');
-  }
-
-  getUser(){
-    return localStorage.getItem('user');
   }
 
 }

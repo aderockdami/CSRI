@@ -15,12 +15,10 @@ export default{
     }
   },
   created(){
-    if(User.loggedIn()){
-      this.$router.push({ path:`/home`});
-    }
+    this.$root.$data.show = true;
   },
   methods:{
-    
+
     }
  }
 </script>
