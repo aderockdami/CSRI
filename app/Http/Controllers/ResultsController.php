@@ -73,16 +73,6 @@ class ResultsController extends Controller
       array_push($return,$tempObject);
     }
 
-    $tempObject = new \stdClass();
-    $tempObject->category = "total score available";
-    $tempObject->weight = $categories[$index]->weight;
-    $tempObject->score = $response;
-    $tempObject->average = $averages[$index];
-    $tempObject->average100 = $average100[$index];
-    $tempObject->weightedAverage = $weightedAverage[$index];
-    json_encode($tempObject);
-    array_push($return,$tempObject);
-
     return response()->json(['data' => $return]);
 
   }

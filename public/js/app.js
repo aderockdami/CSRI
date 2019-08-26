@@ -2221,14 +2221,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       chartOptionsBar: {
         xAxis: {
-          data: ['total score']
+          data: []
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          data: [5]
         },
         series: [{
           type: 'bar',
-          data: ['5']
+          data: []
         }]
       },
       weightedAverage: 0,
