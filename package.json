@@ -25,9 +25,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "echarts": "^4.2.1",
+        "apexcharts": "^3.8.5",
         "vform": "^1.0.1",
-        "vue-echarts": "^4.0.3",
+        "vue-apexcharts": "^1.5.0",
         "vue-progressbar": "^0.7.5"
     }
 }

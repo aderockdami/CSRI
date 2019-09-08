@@ -3,56 +3,34 @@ Vue.component("home",{
 <template>
 <div style="text-align:center">
   <br>
-  <form class="" @submit.prevent="createCategory">
-    <input v-model="form.name" placeholder="Category name" style="margin-top:30px;"/>
-    <br>
-    <input v-model="form.weight" placeholder="Category Weight" style="margin-top:30px;"/>
-    <br>
-    <input type="submit" name="login" value="CREATE" style="margin-top:30px;"/>
-  </form>
+  <h1>PHASES</h1>
+  <phase v-for="phase in phases" :key="phase.path" :phase="phase"></phase>
   <br>
-  Categories
-  <category v-for="category in categories" :key="category.path" :category="category"></category>
 </div>
 </template>
 `
 <script>
-import category from './category.vue';
+import phase from './phase.vue';
 export default {
   components: {
-    category
+    phase
   },
   data(){
     return{
-      form: new Form({
-        name:"",
-        weight:""
-      }),
-      categories:{}
+      phases:{}
     }
   },
   created(){
     this.$root.$data.show = false;
-    this.displayCategories();
+    this.displayPhases();
   },
   methods:{
-    createCategory(){
-        this.$Progress.start();
-        axios.post('/api/admin/category',{name:this.form.name,weight:this.form.weight,token:Storage.getToken()})
-        .then((response)=>{
-          this.$Progress.finish();
-          this.displayCategories();
-          alert('created');
-        }).catch((error)=>{
-            this.$Progress.fail();
-          })
-    },
-    displayCategories(){
+    displayPhases(){
       this.$Progress.start();
-      axios.get('/api/user/category',{params:{token:Storage.getToken()}})
+      axios.get('/api/user/phase',{params:{token:Storage.getToken()}})
         .then((response)=>{
           this.$Progress.finish();
-          this.categories = response.data.data
+          this.phases = response.data.data
         })
         .catch((error)=>{
         this.$Progress.fail();

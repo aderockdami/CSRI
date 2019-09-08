@@ -9,7 +9,8 @@ const app = new Vue({
     router:router,
     data() {
       return {
-        show:true
+        show:true,
+        phase:1
       };
     },
     methods: {

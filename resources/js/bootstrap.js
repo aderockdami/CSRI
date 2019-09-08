@@ -3,11 +3,7 @@ import axios from "axios";
 import VueRouter from "vue-router";
 import {Form,HasError,AlertError} from 'vform';
 import VueProgressBar from 'vue-progressbar';
-import Echarts from 'vue-echarts';
-import 'echarts/lib/chart/bar';
-
-Vue.component('chart', Echarts);
-
+import VueApexCharts from 'vue-apexcharts'
 import Storage from './helpers/Storage'
 import Token from './helpers/Token'
 import User from './helpers/User'
@@ -17,6 +13,8 @@ Vue.use(VueProgressBar,{
   failedColor:'red',
   height:'3px'
 })
+
+Vue.component('apexchart', VueApexCharts)
 
 window.Form = Form;
 Vue.component(HasError.name,HasError)

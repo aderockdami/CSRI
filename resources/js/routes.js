@@ -26,9 +26,21 @@ const routes=[{
   component:require("./components/signup").default
 },
 {
+  name:"categories",
+  path:"/categories",
+  component:require("./components/categories").default,
+  props:true
+},
+{
   name:"questions",
   path:"/questions",
   component:require("./components/questions").default,
+  props:true
+},
+{
+  name:"question",
+  path:"/question",
+  component:require("./components/question").default,
   props:true
 },
 {

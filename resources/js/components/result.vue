@@ -3,51 +3,37 @@ Vue.component("result",{
 <template>
 <div style="text-align:center">
   <div style="display:inline-block;">
-    A CHART SHOWING Average FOR EACH CATEGORY BY NAME
-    <chart :options="chartOptionsBar"></chart>
-    <br>
-    MATURITY RATING : {{weightedAverage}}
+    ..........................................................................................................................
     <br>
     <br>
-    MATURITY LEVEL : {{matuarity}}
+    <apexchart type=radar height=500 :options="chartOptions" :series="series" />
+    <br>
+    OVERALL MATURITY RATING : {{weightedAverage}}
+    <br>
+    <br>
+    OVERALL MATURITY LEVEL : {{matuarity}}
   </div>
   <br>
   <br>
-  <br>
-  DATA BY EACH CATEGORY
-  <br>
-  <br>
-  <br>
-  <card v-for="card in cards" :key="card.path" :card="card"></card>
 </div>
 </template>
 `
 <script>
-import card from './card.vue';
 export default {
-  components: {
-    card
-  },
   data(){
     return{
-      chartOptionsBar: {
-        xAxis: {
-          data: []
-        },
-        yAxis: {
-          type: 'value',
-          data:[5]
-        },
-        series: [
-          {
-            type: 'bar',
-            data: []
-          }
-        ]
+      series: [{
+          name: 'Series 1',
+          data: [],
+      }],
+      chartOptions: {
+        labels: [],
+        title: {
+            text: 'MATURITY LEVELS'
+        }
       },
       weightedAverage:0,
-      matuarity:"",
-      cards:{}
+      matuarity:""
     }
   },
   created(){
@@ -58,12 +44,16 @@ export default {
       axios.get('/api/user/result/'+User.id(),{params:{token:Storage.getToken()}})
         .then((response)=>{
           this.$Progress.finish();
-          this.cards = response.data.data;
           for (var i = 0; i < response.data.data.length; i++) {
-            this.chartOptionsBar.xAxis.data.push(response.data.data[i].category);
-            this.chartOptionsBar.series[0].data.push(response.data.data[i].average);
-            this.weightedAverage +=  response.data.data[i].weightedAverage;
+            var obj = response.data.data[i];
+            let name = Object.keys(obj)[0];
+            this.chartOptions.labels.push(eval(`response.data.data[i].${name}[0].category`));
+            this.series[0].data.push(eval(`response.data.data[i].${name}[0].average`));
+            this.weightedAverage +=  eval(`response.data.data[i].${name}[0].weightedAverage`);
+            console.log(this.weightedAverage);
           }
+
+          this.weightedAverage = this.weightedAverage/5;
           if(this.weightedAverage>=80 && this.weightedAverage <= 100){
             this.matuarity = "ADAPTIVE LEVEL 4"
           }

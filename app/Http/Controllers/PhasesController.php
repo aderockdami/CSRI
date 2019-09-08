@@ -18,14 +18,14 @@ class PhasesController extends Controller
   public function __construct()
   {
       $this->middleware('jwt');
-      $this->middleware('isAdmin', ['except' => ['seephase']]);
+      $this->middleware('isAdmin', ['except' => ['seePhase']]);
   }
 
-  public function seephase(){
+  public function seePhase(){
     return phase::collection(Phases::get());
   }
 
-  public function createphase(Request $request){
+  public function createPhase(Request $request){
 
     $this->validate($request,[
       'name' => 'required|string'
@@ -37,7 +37,7 @@ class PhasesController extends Controller
 
   }
 
-  public function deletephase(Phases $phase){
+  public function deletePhase(Phases $phase){
 
     $phase->delete();
     return response()->json(['status' => 'deleted'],200);

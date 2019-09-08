@@ -2,11 +2,11 @@ Vue.component("userHome",{
 `
 <template>
 <div style="text-align:center">
-  Please answer questions from each category and then click on calculate results.
+  Please answer questions from each category from each phase and then click on calculate results.
   <br>
   <br>
-  Categories
-  <category v-for="category in categories" :key="category.path" :category="category"></category>
+  <h1>PHASES</h1>
+  <phase v-for="phase in phases" :key="phase.path" :phase="phase"></phase>
   <br>
   <br>
   <input type="submit" value="CALCULATE RESULTS" @click="calculateResults">
@@ -20,27 +20,27 @@ Vue.component("userHome",{
 </template>
 `
 <script>
-import category from './category.vue';
+import phase from './phase.vue';
 export default {
   components: {
-    category
+    phase
   },
   data(){
     return{
-      categories:{}
+      phases:{}
     }
   },
   created(){
     this.$root.$data.show = false;
-    this.displayCategories();
+    this.displayPhases();
   },
   methods:{
-    displayCategories(){
+    displayPhases(){
       this.$Progress.start();
-      axios.get('/api/user/category',{params:{token:Storage.getToken()}})
+      axios.get('/api/user/phase',{params:{token:Storage.getToken()}})
         .then((response)=>{
           this.$Progress.finish();
-          this.categories = response.data.data
+          this.phases = response.data.data
         })
         .catch((error)=>{
         this.$Progress.fail();
