@@ -4,9 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Phases extends Model
 {
-
   public $timestamps = false;
 
   /**
@@ -15,7 +14,6 @@ class Categories extends Model
    * @var array
    */
   protected $fillable = [
-      'name','weight','phase_id'
+      'name'
   ];
-
 }

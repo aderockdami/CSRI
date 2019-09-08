@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Categories extends Migration
+class Phases extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class Categories extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('phases', function (Blueprint $table) {
         $table->increments('id')->unsigned();
         $table->string('name');
-        $table->integer('weight');
-        $table->integer('phase_id')->unsigned();
-        $table->foreign('phase_id')->references('id')->on('phases')->onDelete('cascade');
       });
     }
 
@@ -29,6 +26,6 @@ class Categories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('phases');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Model\Results;
+use App\Model\Phases;
 use App\Model\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -33,6 +34,12 @@ class ResultsController extends Controller
     $lastCount = 0;
     $sum = 0;
     $return = [];
+    $phases = [];
+    $phase1 = [];
+    $phase2 = [];
+    $phase3 = [];
+    $phase4 = [];
+    $phase5 = [];
     $size = count($results) - 1;
     foreach ($results as $index => $result) {
       if($result->category_id == $category){
@@ -63,6 +70,7 @@ class ResultsController extends Controller
 
     foreach ($responses as $index => $response) {
       $tempObject = new \stdClass();
+      $tempObject->phase_id = $categories[$index]->phase_id;
       $tempObject->category = $categories[$index]->name;
       $tempObject->weight = $categories[$index]->weight;
       $tempObject->score = $response;
@@ -73,7 +81,60 @@ class ResultsController extends Controller
       array_push($return,$tempObject);
     }
 
-    return response()->json(['data' => $return]);
+    foreach ($return as $key => $object) {
+
+      $index = $object->phase_id;
+      if($index == 1){
+        array_push($phase1,$object);
+      }
+      else if($index == 2){
+        array_push($phase2,$object);
+      }
+      else if($index == 3){
+        array_push($phase3,$object);
+      }
+      else if($index == 4){
+        array_push($phase4,$object);
+      }
+      else if($index == 5){
+        array_push($phase5,$object);
+      }
+
+    }
+
+
+    if(!empty($phase1)){
+      $tempObject = new \stdClass();
+      $tempObject->Identify = $phase1;
+      json_encode($tempObject);
+      array_push($phases,$tempObject);
+    }
+    if(!empty($phase2)){
+      $tempObject = new \stdClass();
+      $tempObject->Protect = $phase2;
+      json_encode($tempObject);
+      array_push($phases,$tempObject);
+    }
+    if(!empty($phase3)){
+      $tempObject = new \stdClass();
+      $tempObject->Detect = $phase3;
+      json_encode($tempObject);
+      array_push($phases,$tempObject);
+    }
+    if(!empty($phase4)){
+      $tempObject = new \stdClass();
+      $tempObject->Respond = $phase4;
+      json_encode($tempObject);
+      array_push($phases,$tempObject);
+    }
+    if(!empty($phase5)){
+      $tempObject = new \stdClass();
+      $tempObject->Recover = $phase5;
+      json_encode($tempObject);
+      array_push($phases,$tempObject);
+    }
+
+    return response()->json(['data' => $phases]);
 
   }
 

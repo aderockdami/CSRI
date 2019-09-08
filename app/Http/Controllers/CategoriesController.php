@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Phases;
 use App\Model\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -20,8 +21,8 @@ class CategoriesController extends Controller
       $this->middleware('isAdmin', ['except' => ['seeCategory']]);
   }
 
-  public function seeCategory(){
-    return category::collection(Categories::get());
+  public function seeCategory(Phases $phase){
+    return category::collection(Categories::where('phase_id',$phase->id)->get());
   }
 
   public function createCategory(Request $request){

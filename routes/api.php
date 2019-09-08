@@ -33,6 +33,8 @@ Route::group([
 ], function ($router) {
 
   /* Admin */
+  Route::post('phase', 'PhasesController@createPhase');
+  Route::delete('phase/{phase}', 'PhasesController@deletePhase');
   Route::post('category', 'CategoriesController@createCategory');
   Route::delete('category/{category}', 'CategoriesController@deleteCategory');
   Route::post('question/{category}', 'QuestionsController@createQuestion');
@@ -47,7 +49,8 @@ Route::group([
 ], function ($router) {
 
   /* User */
-  Route::get('category', 'CategoriesController@seeCategory');
+  Route::get('phase', 'PhasesController@seePhase');
+  Route::get('category/{phase}', 'CategoriesController@seeCategory');
   Route::get('question/{category}', 'QuestionsController@seeQuestions');
   Route::get('result/{user}','ResultsController@seeResults');
   Route::post('result/{category}', 'ResultsController@createResults');
