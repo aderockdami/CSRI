@@ -25,7 +25,7 @@ class ResultsController extends Controller
   public function seeResults(User $user){
     $results = Results::where('user_id',$user->id)->get();
     $categories = Categories::all();
-    $category = 1;
+    $category = Categories::first()->id;
     $responses = [];
     $averages = [];
     $average100 = [];

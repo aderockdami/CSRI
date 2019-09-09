@@ -13,13 +13,22 @@ Vue.component("result",{
     <br>
     OVERALL MATURITY LEVEL : {{matuarity}}
   </div>
+  <br><br><br><br>
+  <div>
+    Maturity Rating and Level by Phase
+  </div>
   <br>
   <br>
+  <rating v-for="(rating, index) in ratings" :key="rating.path" :rating="rating"></rating>
 </div>
 </template>
 `
 <script>
+import rating from './ratings.vue';
 export default {
+  components: {
+    rating
+  },
   data(){
     return{
       series: [{
@@ -33,7 +42,8 @@ export default {
         }
       },
       weightedAverage:0,
-      matuarity:""
+      matuarity:"",
+      ratings:{}
     }
   },
   created(){
@@ -43,6 +53,7 @@ export default {
     displayResults(){
       axios.get('/api/user/result/'+User.id(),{params:{token:Storage.getToken()}})
         .then((response)=>{
+          this.ratings = response.data.data;
           this.$Progress.finish();
           for (var i = 0; i < response.data.data.length; i++) {
             var obj = response.data.data[i];
@@ -50,20 +61,22 @@ export default {
             this.chartOptions.labels.push(eval(`response.data.data[i].${name}[0].category`));
             this.series[0].data.push(eval(`response.data.data[i].${name}[0].average`));
             this.weightedAverage +=  eval(`response.data.data[i].${name}[0].weightedAverage`);
-            console.log(this.weightedAverage);
           }
+
+          this.chartOptions.labels.push("Benchmark");
+          this.series[0].data.push(5);
 
           this.weightedAverage = this.weightedAverage/5;
           if(this.weightedAverage>=80 && this.weightedAverage <= 100){
             this.matuarity = "ADAPTIVE LEVEL 4"
           }
-          else if (this.weightedAverage>=70 && this.weightedAverage <= 79) {
+          else if (this.weightedAverage>=50 && this.weightedAverage <= 79) {
             this.matuarity = "REPETABLE LEVEL 3"
           }
-          else if (this.weightedAverage>=60 && this.weightedAverage <= 60) {
+          else if (this.weightedAverage>=30 && this.weightedAverage <= 49) {
             this.matuarity = "RISK INFORMED LEVEL 2"
           }
-          else if (this.weightedAverage>=0 && this.weightedAverage <= 59) {
+          else if (this.weightedAverage>=0 && this.weightedAverage <= 29) {
             this.matuarity = "PARTIAL LEVEL 1"
           }
         })
