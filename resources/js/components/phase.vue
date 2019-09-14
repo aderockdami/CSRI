@@ -3,7 +3,7 @@ Vue.component("phase",{
 <template>
 <div style="text-align:center">
   <br>
-  <div @click="categories" style="cursor:pointer">
+  <div v-if="phase.id != 6"@click="categories" style="cursor:pointer">
   name {{ phase.name }}&nbsp;
   </div>
 </div>

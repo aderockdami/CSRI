@@ -24,8 +24,8 @@ class ResultsController extends Controller
 
   public function seeResults(User $user){
     $results = Results::where('user_id',$user->id)->get();
-    $categories = Categories::all();
-    $category = Categories::first()->id;
+    $categories = Categories::orderBy('phase_id', 'ASC')->get();
+    $category = Categories::skip(2)->first()->id;
     $responses = [];
     $averages = [];
     $average100 = [];
@@ -65,7 +65,7 @@ class ResultsController extends Controller
     foreach ($averages as $index => $average) {
       array_push($average100,($average/5)*100);
       $weight = $categories[$index]->weight;
-      array_push($weightedAverage,((($average/5)*100) * $weight ) / 100);
+      array_push($weightedAverage,($average/5) * $weight);
     }
 
     foreach ($responses as $index => $response) {

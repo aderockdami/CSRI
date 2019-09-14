@@ -3,10 +3,10 @@ Vue.component("result",{
 <template>
 <div style="text-align:center">
   <div style="display:inline-block;">
-    ..........................................................................................................................
+    ...........................................................................................................................................................
     <br>
     <br>
-    <apexchart type=radar height=500 :options="chartOptions" :series="series" />
+    <apexchart type=radar height=800 :options="chartOptions" :series="series" />
     <br>
     OVERALL MATURITY RATING : {{weightedAverage}}
     <br>
@@ -53,20 +53,28 @@ export default {
     displayResults(){
       axios.get('/api/user/result/'+User.id(),{params:{token:Storage.getToken()}})
         .then((response)=>{
+          if(response.data.data.length == 5){
+          response.data.data[4].Recover[2].average = response.data.data[4].Recover[2].average * 2;
+          response.data.data[4].Recover[2].average100 = response.data.data[4].Recover[2].average100 * 2;
+          response.data.data[4].Recover[2].weightedAverage = response.data.data[4].Recover[2].weightedAverage * 2;
+          }
           this.ratings = response.data.data;
           this.$Progress.finish();
           for (var i = 0; i < response.data.data.length; i++) {
             var obj = response.data.data[i];
             let name = Object.keys(obj)[0];
-            this.chartOptions.labels.push(eval(`response.data.data[i].${name}[0].category`));
-            this.series[0].data.push(eval(`response.data.data[i].${name}[0].average`));
-            this.weightedAverage +=  eval(`response.data.data[i].${name}[0].weightedAverage`);
+            for (var j = 0; j < eval(`response.data.data[i].${name}.length`); j++) {
+              this.name = name;
+              this.chartOptions.labels.push(eval(`response.data.data[i].${name}[j].category`));
+              this.series[0].data.push(eval(`response.data.data[i].${name}[j].average`));
+              this.weightedAverage +=  eval(`response.data.data[i].${name}[j].weightedAverage`);
+            }
           }
 
           this.chartOptions.labels.push("Benchmark");
           this.series[0].data.push(5);
 
-          this.weightedAverage = this.weightedAverage/5;
+          this.weightedAverage = Math.floor(this.weightedAverage/this.ratings.length);
           if(this.weightedAverage>=80 && this.weightedAverage <= 100){
             this.matuarity = "ADAPTIVE LEVEL 4"
           }
