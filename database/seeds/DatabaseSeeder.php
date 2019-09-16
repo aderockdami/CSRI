@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         factory(Phases::class,1)->create(["name" => "Detect"]);
         factory(Phases::class,1)->create(["name" => "Respond"]);
         factory(Phases::class,1)->create(["name" => "Recover"]);
-        factory(Phases::class,1)->create(["name" => "Testing"]);
-        factory(Categories::class,1)->create(["name" => "Testing"]);
-        factory(Categories::class,1)->create(["name" => "Testing"]);
+      //  factory(Phases::class,1)->create(["name" => "Testing"]);
+      //  factory(Categories::class,1)->create(["name" => "Testing"]);
+      //  factory(Categories::class,1)->create(["name" => "Testing"]);
     }
 }

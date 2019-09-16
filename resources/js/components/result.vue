@@ -53,11 +53,7 @@ export default {
     displayResults(){
       axios.get('/api/user/result/'+User.id(),{params:{token:Storage.getToken()}})
         .then((response)=>{
-          if(response.data.data.length == 5){
-          response.data.data[4].Recover[2].average = response.data.data[4].Recover[2].average * 2;
-          response.data.data[4].Recover[2].average100 = response.data.data[4].Recover[2].average100 * 2;
-          response.data.data[4].Recover[2].weightedAverage = response.data.data[4].Recover[2].weightedAverage * 2;
-          }
+          
           this.ratings = response.data.data;
           this.$Progress.finish();
           for (var i = 0; i < response.data.data.length; i++) {
