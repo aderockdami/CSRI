@@ -103,9 +103,10 @@ export default {
     submit(){
       for (var i = 0; i < document.getElementsByName('options').length; i++) {
         this.score += parseInt(document.getElementsByName('options')[i].value);
-        console.log(document.getElementsByName('options')[i].value);
       }
-      this.score = this.score.substring(0, this.score.length - 1);
+      if(!document.getElementsByName('options').length = 1){
+        this.score = this.score.substring(0, this.score.length - 1);
+      }
       axios.post('/api/user/result/'+this.category.id,{response:this.score,token:Storage.getToken(),phase_id:this.$root.$data.phase.id})
       .then((response)=>{
         this.$Progress.finish();
