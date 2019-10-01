@@ -46,7 +46,6 @@ Vue.component("questions",{
           OPTIMIZING
         </option>
       </select>
-      
       </div>
     </div>
   </div>
