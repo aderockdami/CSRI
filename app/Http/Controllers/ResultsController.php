@@ -358,19 +358,15 @@ class ResultsController extends Controller
   public function createResults(Request $request,Categories $category){
 
     $this->validate($request,[
-      'response.*' => 'required|integer'
+      'response' => 'required|integer'
     ]);
 
-    $responses = explode(',',$request->response);
-
-    foreach ($responses as $response) {
-      Results::create([
-        'phase_id' => $request->phase_id,
-        'category_id' => $category->id,
-        'user_id' => User::getId(),
-        'response' => $request->response
-      ]);
-    }
+    Results::create([
+      'phase_id' => $request->phase_id,
+      'category_id' => $category->id,
+      'user_id' => User::getId(),
+      'response' => $request->response
+    ]);
 
     return response()->json(['status' => 'created'],200);
 
