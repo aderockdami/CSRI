@@ -1,9 +1,9 @@
 Vue.component("question",{
 `
 <template>
-<div style="text-align:center">
+<div>
   <br>
-  Question : {{ question.question }}
+ {{ question.question }}
   <span v-if="Admin" style="margin-left:20px;"@click="deleteQuestions" > delete </span>
 </div>
 </template>

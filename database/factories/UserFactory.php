@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'sector'=>'admin',
         'date_of_assesment'=>'2019/12/12',
         'internal_external'=>'internal',
-        'password'=>'$2y$10$U7HyQbAQh2r/OrhQsBau.OJm67/9TkxX76kcpDgrdO2atTsVs1xkq',
+        'password'=>'$2y$10$zPftnpIFyB.U7oxf1zRi0.sr2TuSykuDxKDbNKBWg86mnODshCN.e',
         'user_type'=>'admin'
     ];
 });

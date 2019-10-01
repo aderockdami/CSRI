@@ -1,12 +1,21 @@
 Vue.component("home",{
 `
 <template>
-<div style="text-align:center">
-  <br>
-  <h1>PHASES</h1>
-  <phase v-for="phase in phases" :key="phase.path" :phase="phase"></phase>
-  <br>
-</div>
+<table class="table" style="margin-top:50px;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Phases</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><phase v-for="phase in phases" :key="phase.path" :phase="phase"></phase></td>  
+    </tr>
+  </tbody>
+</table>
 </template>
 `
 <script>

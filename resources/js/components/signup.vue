@@ -1,27 +1,49 @@
 Vue.component("Signup",{
   `
   <template>
-  <div style="text-align:center; margin-top:30px;">
+  
+  <form style="margin-top:50px;" @submit.prevent="signup">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputorganisation">Organisation Name</label>
+      <input v-model="form.email" name="email" class="form-control" id="inputorganisation" placeholder="enter the name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword">Password</label>
+      <input v-model="form.password" type="password" class="form-control" id="inputPassword" placeholder=" enter the Password">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputsector">Sector</label>
+      <input v-model="form.sector" name="email" class="form-control" id="inputsector" placeholder=" enter the sector">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputdate">Date of Assessment</label>
+      <input v-model="form.date_of_assesment"  type="date" class="form-control" id="inputdate" placeholder=" enter date">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputinternalexternal">Internal & External</label>
+      <input v-model="form.internal_external" name="email" class="form-control" id="inputinternalexternal" placeholder=" enter">
+    </div>
+    
+  </div>
+   <div class="form-row">
+   
+  <div class="form-group col-md-6">
+      <input type="submit" class="btn btn-info" name="login" value="SIGN UP">
+    </div>
+</div>
     <span>
       <li v-for="error in errors">
         {{ error[0] }}
       </li>
     </span>
-    <form  @submit.prevent="signup">
-      <input v-model="form.email" name="email" placeholder="ORGANIZATION NAME" style="margin-top:30px;"/>
-      <br/>
-      <input v-model="form.password" type="password" name="password" placeholder="PASSWORD" style="margin-top:30px;"/>
-      <br>
-      <input v-model="form.sector" name="email" placeholder="SECTOR" style="margin-top:30px;"/>
-      <br/>
-      <input v-model="form.date_of_assesment" placeholder="DATE OF ASSESMENT" style="margin-top:30px;"/>
-      <br>
-      <input v-model="form.internal_external" name="email" placeholder="INTERNAL OR EXTERNAL" style="margin-top:30px;"/>
-      <br>
-      <input type="submit" name="login" value="SIGN UP" style="margin-top:30px;"/>
-      <br>
-    </form>
-  </div>
+    
+
+  </form>
   </template>
   `
   <script>

@@ -1,16 +1,29 @@
 Vue.component("Login",{
   `
   <template>
-  <div style="text-align:center; margin-top:30px;">
-    <form  @submit.prevent="login">
-      <input v-model="form.email" name="email" placeholder="ORGANIZATION NAME" style="margin-top:30px;"/>
-      <br/>
-      <input v-model="form.password" type="password" name="password" placeholder="PASSWORD"/>
-      <br>
-      <input type="submit" name="login" value="LOGIN"/>
-      <br>
-    </form>
-  </div>
+<form style="margin-top:50px;" @submit.prevent="login">
+  <div class="form-row">
+  <div class="form-group col-md-3"></div>
+    <div class="form-group col-md-6">
+      <label>Organisation Name</label>
+      <input  v-model="form.email" name="email"  class="form-control" placeholder="enter the name">
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-3"></div>
+     <div class="form-group col-md-6">
+      <label>Password</label>
+      <input  v-model="form.password" type="password" name="password" class="form-control"  placeholder="enter the password">
+    </div>
+    </div>
+     <div class="form-row">
+    <div class="form-group col-md-3"></div>
+     <div class="form-group col-md-6">
+      <input class="btn btn-info" type="submit" name="login" value="LOGIN"/>
+    </div>
+    </div>
+    </div>
+  </form>
   </template>
   `
   <script>

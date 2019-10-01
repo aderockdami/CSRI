@@ -1,12 +1,19 @@
 Vue.component("category",{
 `
 <template>
-<div style="text-align:center">
-  <br>
-  <span @click="question" style="cursor:pointer">
-  name {{ category.name }}&nbsp;
-  weight {{ category.weight }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>
+<div @click="question" style="cursor:pointer">
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group">
+      <li class="list-group-item">{{ category.name }}</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+     <ul class="list-group">
+      <li class="list-group-item">{{ category.weight }}</li>
+      </ul>
+    </div>
+  </div>
   <span v-if="Admin" @click="deleteCategory" >delete</span>
 </div>
 </template>

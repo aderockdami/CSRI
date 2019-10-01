@@ -1,12 +1,11 @@
 Vue.component("phase",{
 `
 <template>
-<div style="text-align:center">
-  <br>
-  <div v-if="phase.id != 6"@click="categories" style="cursor:pointer">
-  name {{ phase.name }}&nbsp;
+  <div @click="categories" style="cursor:pointer">
+  <ul class="list-group" style="width:200px;">
+  <li class="list-group-item list-group-item-info" style="colour:#F8F7EF"><h6>{{ phase.id }}.&nbsp;&nbsp;&nbsp;{{ phase.name }}&nbsp;</h6></li>
+  </ul>
   </div>
-</div>
 </template>
 `
 <script>

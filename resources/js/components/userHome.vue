@@ -1,21 +1,17 @@
 Vue.component("userHome",{
 `
 <template>
-<div style="text-align:center">
-  Please answer questions from each category from each phase and then click on calculate results.
-  <br>
-  <br>
-  <h1>PHASES</h1>
+<div class="alert alert-info text-align-center" role="alert" style="margin-top:50px;">
+ <h4>Please Answer Questions From Each Category & Click On Calculate Results.</h4>
+<div style="margin-top:20px;">
+ 
   <phase v-for="phase in phases" :key="phase.path" :phase="phase"></phase>
-  <br>
-  <br>
-  <input type="submit" value="CALCULATE RESULTS" @click="calculateResults">
-  <br>
-  <br>
-  RESET IF YOU WANT TO RETAKE THE TEST
-  <br>
-  <br>
-  <input type="reset" name="" value="RESET" @click="clearResults">
+<br>
+  <input type="submit" class="btn btn-info" value="CALCULATE RESULTS" @click="calculateResults">
+  <br><br>
+  <h5>Reset if you want to retake the test &nbsp;&nbsp;&nbsp;
+  <input class="btn btn-info" type="reset" name="" value="RESET" @click="clearResults"></h5>
+</div>
 </div>
 </template>
 `

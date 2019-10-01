@@ -1,14 +1,20 @@
 Vue.component("navbar",{
 `
 <template>
-  <header>
-    <div class="container">
-      <span><h1 style="font-size:50px; margin:0; float:left; width:70%;"><router-link to="/">CSRI</router-link></h1></span>
-      <span v-if="show()"><h1 style="text-align:center; font-size:20px; float:left; width:15%;"><router-link to="/signup">SIGNUP</router-link></h1></span>
-      <span v-if="show()"><h1 style="text-align:center; font-size:20px; float:left; width:15%;"><router-link to="/login">LOGIN</router-link></h1></span>
-      <span @click="logout" v-if="!show()"><h1 style="text-align:center; font-size:20px; float:left; width:30%;"><router-link to="">LOGOUT</router-link></h1></span>
-    </div>
-  </header>
+<nav class="navbar">
+  <span class="navbar-brand"><router-link to="/">CSRI</router-link></span>
+   <ul class="nav">
+  <li class="nav-item">
+    <a v-if="show()" class="nav-link active" href="#"><router-link to="/login">Login</router-link></a>
+  </li>
+  <li class="nav-item">
+    <a v-if="show()"class="nav-link" href="#"><router-link to="/signup">Signup</router-link></a>
+  </li>
+  <li class="nav-item">
+    <a @click="logout" v-if="!show()"class="nav-link" href="#"><router-link to="">Logout</router-link></a>
+  </li>
+</ul>
+    </nav>
 </template>
 `
 <script>

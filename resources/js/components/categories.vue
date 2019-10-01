@@ -1,17 +1,23 @@
 Vue.component("categories",{
 `
 <template>
-<div style="text-align:center">
-  <br>
+<div class="alert alert-info text-align-center" role="alert" style="margin-top:50px;">
   <form v-if="Admin" class="" @submit.prevent="createCategory">
     <input v-model="form.name" placeholder="Category name" style="margin-top:30px;"/>
     <br>
     <input v-model="form.weight" placeholder="Category Weight" style="margin-top:30px;"/>
     <br>
-    <input type="submit" name="login" value="CREATE" style="margin-top:30px;"/>
+    <input type="submit" class="btn btn-info" name="login" value="CREATE" style="margin-top:30px;"/>
   </form>
   <br>
-  Categories
+  <div class="row">
+  <div class="col-md-6">
+  <h4>Category Name</h4>
+  </div>
+  <div class="col-md-6">
+  <h4>Category Weight</h4>
+  </div>
+  </div>
   <category v-for="category in categories" :key="category.path" :category="category"></category>
 </div>
 </template>
