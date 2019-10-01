@@ -30,9 +30,11 @@ export default {
     displayResults(){
       var obj = this.rating;
       let name = Object.keys(obj)[0];
-      this.name = name;
-      this.weightedAverage =  eval(`this.rating.${name}[0].weightedAverage`);
-
+      for (var i = 0; i < eval(`this.rating.${name}.length`); i++) {
+        this.name = name;
+        this.weightedAverage +=  eval(`this.rating.${name}[i].weightedAverage`);
+      }
+      this.weightedAverage = Math.floor(this.weightedAverage);
       if(this.weightedAverage>=80 && this.weightedAverage <= 100){
         this.matuarity = "ADAPTIVE LEVEL 4"
       }
