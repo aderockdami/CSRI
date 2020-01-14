@@ -1,11 +1,10 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
-version: "3.1" \
-services:
-
+version: 3.1 \
+services: \
     mysql:
-      image: mysql:8.0
+      image: mysql:8.0 \
       container_name: csri-mysql
       working_dir: /application
       volumes:
